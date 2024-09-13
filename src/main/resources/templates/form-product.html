@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Formulario de Producto</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/css/styles.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert2 CDN -->
+        <script src="/js/form-product.js" defer></script> <!-- Cargar el archivo JS -->
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="my-4" th:text="${productDto.id != null ? 'Editar Producto' : 'Crear Producto'}"></h1>
+
+            <form th:action="@{${productDto.id != null ? '/products/update' : '/products/create'}}" th:object="${productDto}" method="post">
+                <input type="hidden" th:if="${productDto.id != null}" th:value="${productDto.id}" name="id">
+
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" id="product.name" th:field="*{product.name}" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Descripción</label>
+                    <input type="text" id="product.description" th:field="*{product.description}" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Precio</label>
+                    <input type="number" id="product.price" th:field="*{product.price}" class="form-control" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label for="category">Categoría</label>
+                    <select id="product.category" th:field="*{product.category.id}" class="form-control">
+                        <!-- Las opciones se cargarán aquí mediante AJAX -->
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="stock">Stock</label>
+                    <input type="number" id="product.stock" th:field="*{product.stock}" class="form-control">
+                </div>
+
+                <button type="submit" class="btn btn-primary" th:text="${productDto.id != null ? 'Actualizar' : 'Crear'}"></button>
+                <a href="/products/list" class="btn btn-secondary ml-2">Cancelar</a>
+            </form>
+
+            <div th:if="${error}" class="alert alert-danger mt-3" role="alert" th:text="${error}"></div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalles del Producto</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Detalles del Producto</h1>
+
+        <div th:if="${product}">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${product.name}"></h5>
+                    <p class="card-text">ID: <span th:text="${product.id}"></span></p>
+                    <p class="card-text">Precio: <span th:text="${product.price}"></span></p>
+                    <p class="card-text">descripcion: <span th:text="${product.description}"></span></p>
+                    <p class="card-text">categoria <span th:text="${product.category.name}"></span></p>
+                    <p class="card-text">stock <span th:text="${product.stock}"></span></p>
+                    <a href="/products/list" class="btn btn-secondary">Volver a la lista</a>
+                </div>
+            </div>
+        </div>
+        <div th:if="${error}" class="alert alert-danger mt-3" role="alert" th:text="${error}"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

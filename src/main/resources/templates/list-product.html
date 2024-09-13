@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Lista de Productos</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/css/styles.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="my-4">Lista de Productos</h1>
+
+            <a href="/products/create" class="btn btn-primary mb-3">Crear Nuevo Producto</a>
+
+            <div th:if="${message}" class="alert alert-success" role="alert" th:text="${message}"></div>
+            <div th:if="${error}" class="alert alert-danger" role="alert" th:text="${error}"></div>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>descripcion</th>
+                        <th>precio</th>
+                        <th>categoria</th>
+                        <th>stock</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="product : ${products}">
+                        <td th:text="${product.id}"></td>
+                        <td th:text="${product.name}"></td>
+                        <td th:text="${product.description}"></td>
+                        <td th:text="${product.price}"></td>
+                        <td th:text="${product.category.name}"></td>
+                        <td th:text="${product.stock}"></td>
+                        <td>
+                            <a th:href="@{/products/view/{id}(id=${product.id})}" class="btn btn-info btn-sm">Ver</a>
+                            <a th:href="@{/products/update/{id}(id=${product.id})}" class="btn btn-warning btn-sm">Editar</a>
+                            <form id="deleteForm" th:action="@{/products/delete/{id}(id=${product.id})}" method="post" style="display:inline;">
+                                <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete()">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+          <script src="/js/product.js" defer></script> <!-- Cargar el archivo JS -->
+    </body>
+</html>
