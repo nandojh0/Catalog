@@ -1,4 +1,4 @@
-function confirmDelete(productId) {
+function confirmDelete(orderId) {
     Swal.fire({
         title: '¿Estás seguro?',
         text: 'No podrás recuperar este elemento una vez eliminado.',
@@ -11,7 +11,7 @@ function confirmDelete(productId) {
     }).then((result) => {
         if (result.isConfirmed) {
             // Si el usuario confirma, enviar el formulario
-            document.getElementById('deleteForm' + productId).submit();
+            document.getElementById('deleteForm' + orderId).submit();
         }
     });
 }

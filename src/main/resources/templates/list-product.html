@@ -49,8 +49,8 @@
                         <td>
                             <a th:href="@{/products/view/{id}(id=${product.id})}" class="btn btn-info btn-sm">Ver</a>
                             <a th:href="@{/products/update/{id}(id=${product.id})}" class="btn btn-warning btn-sm">Editar</a>
-                            <form id="deleteForm" th:action="@{/products/delete/{id}(id=${product.id})}" method="post" style="display:inline;">
-                                <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete()">Eliminar</button>
+                            <form th:id="'deleteForm' + ${product.id}" th:action="@{/products/delete/{id}(id=${product.id})}" method="post" style="display:inline;">
+                                <button type="button" th:onclick="'confirmDelete(' + ${product.id} + ')' " class="btn btn-danger btn-sm">Eliminar</button>
                             </form>
                         </td>
                     </tr>
