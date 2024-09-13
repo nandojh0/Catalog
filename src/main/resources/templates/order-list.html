@@ -7,6 +7,15 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    <div class="container my-5">
+            <h1 class="my-4 text-center">Bienvenido a la Aplicación de Pedidos</h1>
+            <div class="d-flex justify-content-center flex-wrap">
+                <a th:href="@{/products/list}" class="btn btn-primary mx-2 mb-2">Ver Lista de Productos</a>
+                <a th:href="@{/products/create}" class="btn btn-success mx-2 mb-2">Crear Nuevo Producto</a>
+                <a th:href="@{/orders/list}" class="btn btn-primary mx-2 mb-2">Ver Lista de Pedidos</a>
+                <a th:href="@{/orders/create}" class="btn btn-success mx-2 mb-2">Crear Nuevo Pedido</a>
+            </div>
+        </div>
     <div class="container mt-5">
         <h1 class="mb-4">Lista de Pedidos</h1>
 
